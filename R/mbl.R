@@ -58,19 +58,19 @@
 #' \itemize{
 #'        \item{\code{"pca"} (Default):}{ Mahalanobis distance
 #'        computed on the matrix of scores of a Principal Component (PC)
-#'        projection of \code{Xr} and \code{Xr}. PC projection is done using the
+#'        projection of \code{Xr} and \code{Xu}. PC projection is done using the
 #'        singular value decomposition (SVD) algorithm.
 #'        See \code{\link{ortho_diss}} function.}
 #'
 #'        \item{\code{"pca.nipals"}}{ Mahalanobis distance
 #'        computed on the matrix of scores of a Principal Component (PC)
-#'        projection of \code{Xr} and \code{Xr}. PC projection is done using the
+#'        projection of \code{Xr} and \code{Xu}. PC projection is done using the
 #'        non-linear iterative partial least squares (nipals) algorithm.
 #'        See \code{\link{ortho_diss}} function.}
 #'
 #'        \item{\code{"pls"}}{ Mahalanobis distance
 #'        computed on the matrix of scores of a partial least squares projection
-#'        of \code{Xr} and \code{Xr}. In this case, \code{Yr} is always required.
+#'        of \code{Xr} and \code{Xu}. In this case, \code{Yr} is always required.
 #'        See \code{\link{ortho_diss}} function.}
 #'
 #'        \item{\code{"cor"}}{ correlation coefficient
@@ -380,10 +380,9 @@
 #' library(prospectr)
 #' data(NIRsoil)
 #'
-#' # Filter the data using the Savitzky and Golay smoothing filter with
-#' # a window size of 11 spectral variables and a polynomial order of 3
-#' # (no differentiation).
-#' sg <- savitzkyGolay(NIRsoil$spc, p = 3, w = 11, m = 0)
+#' # Filter the data using the first derivative with Savitzky and Golay smoothing 
+#' filter and a window size of 11 spectral variables and a polynomial order of 4
+#' sg <- savitzkyGolay(NIRsoil$spc, m = 1, p = 4, w = 15)
 #'
 #' # Replace the original spectra with the filtered ones
 #' NIRsoil$spc <- sg
